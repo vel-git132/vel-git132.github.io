@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velmurugan S — Network &amp; IT Support Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0F14;
+  --panel:#121821;
+  --panel-2:#161D27;
+  --line:#232C38;
+  --text:#E8EDF2;
+  --muted:#7E8B9C;
+  --signal:#5EEAD4;
+  --signal-dim:rgba(94,234,212,0.12);
+  --amber:#FBBF24;
+  --amber-dim:rgba(251,191,36,0.12);
+  --radius:10px;
+  --mono:'JetBrains Mono', monospace;
+  --sans:'Inter', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(94,234,212,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94,234,212,0.025) 1px, transparent 1px);
+  background-size:48px 48px;
+  pointer-events:none;
+  z-index:0;
+}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* ===== Top status bar ===== */
+.topbar{
+  border-bottom:1px solid var(--line);
+  padding:14px 0;
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:0.04em;
+}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.status-dot{
+  display:inline-block;width:8px;height:8px;border-radius:50%;
+  background:var(--signal);margin-right:8px;
+  box-shadow:0 0 0 0 rgba(94,234,212,0.6);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(94,234,212,0.5)}
+  70%{box-shadow:0 0 0 6px rgba(94,234,212,0)}
+  100%{box-shadow:0 0 0 0 rgba(94,234,212,0)}
+}
+.topbar nav a{color:var(--muted);text-decoration:none;margin-left:18px;transition:color .2s}
+.topbar nav a:hover{color:var(--signal)}
+@media (max-width:700px){.topbar nav{display:none}}
+
+/* ===== Hero ===== */
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:12px;color:var(--signal);
+  letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;
+  display:flex;align-items:center;gap:10px;
+}
+.hero-eyebrow .line{flex:0 0 40px;height:1px;background:var(--signal);opacity:0.4}
+.hero h1{
+  font-size:clamp(2.6rem, 6vw, 4.4rem);
+  font-weight:800;letter-spacing:-0.02em;line-height:1.05;
+  margin-bottom:14px;
+}
+.hero h1 span{color:var(--signal)}
+.hero .role{
+  font-family:var(--mono);font-size:clamp(0.95rem,2vw,1.15rem);
+  color:var(--muted);margin-bottom:28px;
+}
+.hero .role .sep{color:var(--line);margin:0 10px}
+.hero-desc{max-width:620px;color:#C3CCD6;font-size:1.02rem;margin-bottom:36px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 24px;border-radius:8px;
+  font-family:var(--mono);font-size:13px;font-weight:500;
+  text-decoration:none;letter-spacing:0.02em;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  border:1px solid transparent;
+}
+.btn:active{transform:scale(0.98)}
+.btn-primary{background:var(--signal);color:#06201C;}
+.btn-primary:hover{box-shadow:0 0 0 4px var(--signal-dim)}
+.btn-ghost{background:transparent;border-color:var(--line);color:var(--text)}
+.btn-ghost:hover{border-color:var(--signal);color:var(--signal)}
+
+/* contact strip */
+.contact-strip{
+  display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;
+  font-family:var(--mono);font-size:12.5px;
+}
+.contact-strip a{color:var(--muted);text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .2s}
+.contact-strip a:hover{color:var(--signal)}
+.contact-strip svg{flex-shrink:0;opacity:0.7}
+
+/* ===== Section shells ===== */
+section{padding:64px 0;border-bottom:1px solid var(--line)}
+.section-head{display:flex;align-items:baseline;gap:16px;margin-bottom:36px;flex-wrap:wrap}
+.section-tag{
+  font-family:var(--mono);font-size:11px;color:var(--signal);
+  letter-spacing:0.14em;text-transform:uppercase;
+  border:1px solid var(--signal);border-radius:4px;padding:4px 10px;
+}
+.section-head h2{font-size:1.9rem;font-weight:700;letter-spacing:-0.01em}
+.section-sub{color:var(--muted);font-size:0.95rem;max-width:560px;margin-top:8px}
+
+/* ===== Why hire me / strengths ===== */
+.strength-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.strength-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;transition:border-color .2s, transform .2s;
+}
+.strength-card:hover{border-color:var(--signal);transform:translateY(-2px)}
+.strength-card .num{font-family:var(--mono);color:var(--signal);font-size:13px;margin-bottom:12px;display:block}
+.strength-card h3{font-size:1.05rem;margin-bottom:8px;font-weight:600}
+.strength-card p{color:var(--muted);font-size:0.9rem}
+
+/* ===== Skills dashboard ===== */
+.skills-dash{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:700px){.skills-dash{grid-template-columns:1fr}}
+.skill-panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 22px;
+}
+.skill-panel h4{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px;
+}
+.skill-panel h4::before{content:'';width:6px;height:6px;background:var(--signal);border-radius:50%}
+.skill-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:11px;font-size:0.92rem}
+.skill-row:last-child{margin-bottom:0}
+.skill-bar{flex:1;height:5px;background:var(--line);border-radius:3px;margin:0 12px;overflow:hidden}
+.skill-bar-fill{height:100%;background:linear-gradient(90deg,var(--signal),#3FC9B8);border-radius:3px}
+.skill-pct{font-family:var(--mono);font-size:11px;color:var(--signal);width:32px;text-align:right}
+
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.tag-pill{
+  font-family:var(--mono);font-size:11.5px;color:var(--text);
+  background:var(--panel-2);border:1px solid var(--line);
+  padding:6px 12px;border-radius:6px;
+}
+
+/* ===== Timeline (Education / Experience) ===== */
+.timeline{position:relative;padding-left:32px}
+.timeline::before{
+  content:'';position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--line);
+}
+.t-item{position:relative;margin-bottom:36px}
+.t-item:last-child{margin-bottom:0}
+.t-item::before{
+  content:'';position:absolute;left:-32px;top:4px;width:11px;height:11px;
+  border-radius:50%;background:var(--bg);border:2px solid var(--signal);
+}
+.t-date{font-family:var(--mono);font-size:11.5px;color:var(--signal);letter-spacing:0.06em;margin-bottom:6px}
+.t-item h3{font-size:1.1rem;font-weight:600;margin-bottom:4px}
+.t-item .org{color:var(--muted);font-size:0.9rem;margin-bottom:10px}
+.t-item p, .t-item ul{color:#C3CCD6;font-size:0.92rem}
+.t-item ul{list-style:none;padding:0}
+.t-item ul li{position:relative;padding-left:18px;margin-bottom:6px}
+.t-item ul li::before{content:'▸';position:absolute;left:0;color:var(--signal);font-size:0.8rem}
+
+/* ===== Project cards ===== */
+.project-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.project-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden; display:flex; flex-direction:column;
+}
+.project-head{
+  padding:20px 22px;border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:flex-start;gap:12px;
+}
+.project-head h3{font-size:1.15rem;font-weight:700}
+.project-date{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;
+  border:1px solid var(--line);border-radius:4px;padding:3px 8px;}
+.project-body{padding:20px 22px;flex:1;display:flex;flex-direction:column;gap:14px}
+.project-body ul{list-style:none;color:#C3CCD6;font-size:0.9rem}
+.project-body ul li{position:relative;padding-left:18px;margin-bottom:8px}
+.project-body ul li::before{content:'▸';position:absolute;left:0;color:var(--signal)}
+.sub-block{margin-top:4px}
+.sub-block h4{
+  font-family:var(--mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:8px;
+}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;padding:0 22px 20px}
+.project-tags span{
+  font-family:var(--mono);font-size:10.5px;color:var(--muted);
+  background:var(--panel-2);border:1px solid var(--line);border-radius:4px;padding:4px 8px;
+}
+
+/* ===== Certifications ===== */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.cert-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px 20px;display:flex;gap:14px;align-items:flex-start;
+}
+.cert-icon{
+  flex-shrink:0;width:36px;height:36px;border-radius:8px;
+  background:var(--signal-dim);display:flex;align-items:center;justify-content:center;
+  color:var(--signal);
+}
+.cert-card h4{font-size:0.98rem;font-weight:600;margin-bottom:4px}
+.cert-card p{font-size:0.85rem;color:var(--muted)}
+
+/* ===== Achievements / metrics ===== */
+.metric-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.metric-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;text-align:left;
+}
+.metric-card .val{font-family:var(--mono);font-size:2.2rem;font-weight:700;color:var(--signal);line-height:1}
+.metric-card .lbl{color:var(--muted);font-size:0.85rem;margin-top:8px}
+
+/* ===== Career goals ===== */
+.goals-panel{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;
+}
+.goals-panel .goal h4{
+  font-family:var(--mono);font-size:11px;color:var(--amber);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;
+}
+.goals-panel .goal p{color:#C3CCD6;font-size:0.92rem}
+
+/* ===== Contact / footer ===== */
+.contact-section{padding-bottom:80px}
+.contact-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:32px;
+}
+.contact-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;text-decoration:none;color:var(--text);
+  display:flex;flex-direction:column;gap:10px;transition:border-color .2s, transform .2s;
+}
+.contact-card:hover{border-color:var(--signal);transform:translateY(-2px)}
+.contact-card .ico{color:var(--signal)}
+.contact-card .label{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase}
+.contact-card .value{font-size:0.95rem;font-weight:500;word-break:break-word}
+
+footer{
+  font-family:var(--mono);font-size:11.5px;color:var(--muted);
+  text-align:center;padding:28px 0;border-top:1px solid var(--line);
+}
+footer .status-dot{margin-right:6px}
+
+/* topology divider */
+.topo{
+  display:flex;align-items:center;gap:8px;margin:48px 0 0;opacity:0.35;
+}
+.topo .node{width:6px;height:6px;border-radius:50%;background:var(--signal);flex-shrink:0}
+.topo .seg{flex:1;height:1px;background:var(--line)}
+
+/* responsive tuning */
+@media (max-width:700px){
+  .hero{padding:48px 0 40px}
+  section{padding:44px 0}
+  .goals-panel{padding:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== Top status bar ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <div><span class="status-dot"></span>STATUS: AVAILABLE — IMMEDIATE JOINER · BENGALURU, IN</div>
+    <nav>
+      <a href="#strengths">Why hire me</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<!-- ===== Hero ===== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow"><span class="line"></span> NETWORK &amp; IT SUPPORT ENGINEER</div>
+    <h1>Velmurugan S — I build, monitor, and<br>fix networks <span>before they break.</span></h1>
+    <div class="role">
+      VLAN &amp; OSPF Design <span class="sep">/</span> NOC Monitoring <span class="sep">/</span> Incident Response <span class="sep">/</span> CCNA-Level Expertise
+    </div>
+    <p class="hero-desc">
+      Motivated network engineer with hands-on routing, switching, and TCP/IP expertise built through
+      self-directed GNS3 and Cisco Packet Tracer labs. I design segmented, secure networks — from
+      smart-home IoT infrastructure to multi-department enterprise topologies — and I'm ready to bring
+      that same precision to a live NOC or IT support floor from day one.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="mailto:vel2152005@gmail.com">Email Me</a>
+      <a class="btn btn-ghost" href="https://wa.me/917826833271" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn btn-ghost" href="https://linkedin.com/in/vel-murugan-41913328b" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-ghost" href="https://github.com/vel-git132" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="contact-strip">
+      <a href="mailto:vel2152005@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg>
+        vel2152005@gmail.com
+      </a>
+      <a href="tel:+917826833271">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg>
+        +91 78268 33271
+      </a>
+      <a href="https://www.google.com/maps/place/Bengaluru" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Bengaluru, India
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== Why Hire Me ===== -->
+<section id="strengths">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">01 — Why Hire Me</span>
+      <h2>Lab-tested, project-proven, ready to deploy.</h2>
+    </div>
+    <div class="strength-grid">
+      <div class="strength-card">
+        <span class="num">[A]</span>
+        <h3>Real network builds, not just theory</h3>
+        <p>Two full network simulations — a multi-VLAN office and a complete IoT smart-home — designed, configured, and validated end to end in Packet Tracer.</p>
+      </div>
+      <div class="strength-card">
+        <span class="num">[B]</span>
+        <h3>CCNA-level fluency</h3>
+        <p>Self-studied routing, switching, OSPF, ACLs, and NAT with practical lab application — comfortable in CLI from day one.</p>
+      </div>
+      <div class="strength-card">
+        <span class="num">[C]</span>
+        <h3>Support-desk ready</h3>
+        <p>Active Directory, remote desktop support, ticketing systems, and LAN/WAN troubleshooting — the daily toolkit of an IT support floor.</p>
+      </div>
+      <div class="strength-card">
+        <span class="num">[D]</span>
+        <h3>Immediate availability</h3>
+        <p>No notice period. Based in Bengaluru and ready to onboard, train, and start contributing from week one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Skills Dashboard ===== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">02 — Skills Dashboard</span>
+      <h2>Tools &amp; Technologies</h2>
+      <p class="section-sub">Self-assessed proficiency, calibrated against hands-on lab hours and project complexity.</p>
+    </div>
+    <div class="skills-dash">
+      <div class="skill-panel">
+        <h4>Networking Protocols</h4>
+        <div class="skill-row"><span>TCP/IP &amp; OSI Model</span><div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div><span class="skill-pct">92%</span></div>
+        <div class="skill-row"><span>VLANs &amp; Subnetting (VLSM)</span><div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div><span class="skill-pct">90%</span></div>
+        <div class="skill-row"><span>OSPF &amp; Routing</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-row"><span>DHCP / DNS / NAT / ACLs</span><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div><span class="skill-pct">88%</span></div>
+        <div class="skill-row"><span>STP</span><div class="skill-bar"><div class="skill-bar-fill" style="width:78%"></div></div><span class="skill-pct">78%</span></div>
+      </div>
+      <div class="skill-panel">
+        <h4>IT Support &amp; Operations</h4>
+        <div class="skill-row"><span>NOC Monitoring</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-row"><span>Active Directory</span><div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div><span class="skill-pct">80%</span></div>
+        <div class="skill-row"><span>Remote Desktop / Ticketing</span><div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div><span class="skill-pct">85%</span></div>
+        <div class="skill-row"><span>Incident Response &amp; Fault Isolation</span><div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div><span class="skill-pct">88%</span></div>
+        <div class="skill-row"><span>LAN/WAN Troubleshooting</span><div class="skill-bar"><div class="skill-bar-fill" style="width:87%"></div></div><span class="skill-pct">87%</span></div>
+      </div>
+    </div>
+    <div class="topo"><div class="node"></div><div class="seg"></div><div class="node"></div><div class="seg"></div><div class="node"></div></div>
+    <div style="margin-top:32px">
+      <h4 style="font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px">Hardware, Platforms &amp; OS</h4>
+      <div class="tag-cloud">
+        <span class="tag-pill">Cisco Routers &amp; Switches</span>
+        <span class="tag-pill">Cisco Packet Tracer</span>
+        <span class="tag-pill">GNS3</span>
+        <span class="tag-pill">Wireshark</span>
+        <span class="tag-pill">Windows 10/11</span>
+        <span class="tag-pill">Windows Server</span>
+        <span class="tag-pill">Linux (Ubuntu / Debian CLI)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Projects ===== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">03 — Projects &amp; Achievements</span>
+      <h2>Networks I've designed and deployed</h2>
+      <p class="section-sub">Every project below was built end-to-end in a simulated production environment — from topology design to security policy to live monitoring.</p>
+    </div>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-head">
+          <h3>Smart Home IoT Network</h3>
+          <span class="project-date">May 2026</span>
+        </div>
+        <div class="project-body">
+          <p style="color:#C3CCD6;font-size:0.92rem">A complete smart-home IoT infrastructure with end-to-end monitoring and real-time fault detection — built in Cisco Packet Tracer.</p>
+          <ul>
+            <li>Centralised home gateway interconnecting smart endpoints: automated doors, lighting, climate fans, and environmental sensors</li>
+            <li>Dedicated remote IoT server for real-time telemetry, device registration, and automated device behaviour</li>
+            <li>Multi-segment routing with validated secure remote admin access for toggling smart hardware states</li>
+          </ul>
+        </div>
+        <div class="project-tags">
+          <span>IoT Networking</span><span>Gateway Config</span><span>DHCP / NAT</span><span>Remote Admin</span><span>Packet Tracer</span>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-head">
+          <h3>Small Company Network Design</h3>
+          <span class="project-date">Mar 2026</span>
+        </div>
+        <div class="project-body">
+          <p style="color:#C3CCD6;font-size:0.92rem">A segmented multi-department office network applying VLAN isolation, inter-department routing, and access control — simulating a real-world IT support environment.</p>
+          <div class="sub-block">
+            <h4>HR — VLAN 10</h4>
+            <ul>
+              <li>Isolated sensitive payroll data; configured DHCP scopes for HR endpoints</li>
+              <li>Applied strict ACLs to restrict unauthorised access</li>
+            </ul>
+          </div>
+          <div class="sub-block">
+            <h4>Sales — VLAN 20</h4>
+            <ul>
+              <li>Inter-VLAN routing for shared CRM server access</li>
+              <li>NAT &amp; firewall rules for secure internet access</li>
+            </ul>
+          </div>
+          <div class="sub-block">
+            <h4>IT — VLAN 30</h4>
+            <ul>
+              <li>Full admin access to core switches, routers, and server infrastructure</li>
+              <li>Centralised DNS, DHCP, STP loop prevention, and NOC-style monitoring</li>
+            </ul>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span>VLAN Segmentation</span><span>Inter-VLAN Routing</span><span>ACLs</span><span>NAT &amp; Firewall</span><span>NOC Monitoring</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Achievements metrics ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">04 — At a Glance</span>
+      <h2>Snapshot</h2>
+    </div>
+    <div class="metric-grid">
+      <div class="metric-card"><div class="val">2</div><div class="lbl">End-to-end network builds in Packet Tracer</div></div>
+      <div class="metric-card"><div class="val">3</div><div class="lbl">VLANs designed with full segmentation &amp; ACLs</div></div>
+      <div class="metric-card"><div class="val">10+</div><div class="lbl">Protocols &amp; technologies hands-on (OSPF, NAT, DHCP, STP...)</div></div>
+      <div class="metric-card"><div class="val">3</div><div class="lbl">Certifications completed</div></div>
+      <div class="metric-card"><div class="val">0</div><div class="lbl">Days notice period — immediate joiner</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Experience / Education timeline ===== -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">05 — Education &amp; Foundation</span>
+      <h2>Where it started</h2>
+    </div>
+    <div class="timeline">
+      <div class="t-item">
+        <div class="t-date">2021 — 2024</div>
+        <h3>Bachelor of Computer Applications (BCA)</h3>
+        <div class="org">Sri Vidya Mandir Arts &amp; Science College (Autonomous), Uthangarai</div>
+        <p>Built the foundation in computing and systems that led directly into self-directed networking labs — GNS3 and Packet Tracer became the proving ground for everything learned in the classroom.</p>
+      </div>
+      <div class="t-item">
+        <div class="t-date">2020 — 2021</div>
+        <h3>Higher Secondary Certificate (HSC)</h3>
+        <div class="org">Government Higher Secondary School, Puliyampatti</div>
+        <p>Completed higher secondary education, setting the groundwork for a technical career path.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Certifications ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">06 — Certifications</span>
+      <h2>Verified learning</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h4>Cyber Security &amp; Ethical Hacking for Beginners</h4>
+          <p>Powermate</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+        </div>
+        <div>
+          <h4>Data Science Using Python</h4>
+          <p>Foundational data analysis &amp; scripting</p>
+        </div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M6 8h.01M6 12h.01M10 8h8M10 12h8M10 16h4"/></svg>
+        </div>
+        <div>
+          <h4>CCNA Concepts — Self-Studied</h4>
+          <p>Routing, Switching, VLANs, OSPF, ACLs, NAT</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Career Goals ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">07 — Career Goals</span>
+      <h2>What I'm building toward</h2>
+    </div>
+    <div class="goals-panel">
+      <div class="goal">
+        <h4>Short Term</h4>
+        <p>Join a high-performing Network &amp; IT Support team where I can apply my routing, switching, and troubleshooting skills on live infrastructure — and earn my official CCNA certification within the first year.</p>
+      </div>
+      <div class="goal">
+        <h4>Medium Term</h4>
+        <p>Grow from L1 support into NOC operations and network automation — combining my Python foundation with infrastructure work to reduce manual monitoring overhead.</p>
+      </div>
+      <div class="goal">
+        <h4>Long Term</h4>
+        <p>Become a specialist in enterprise network design and security — architecting the kind of segmented, resilient infrastructure I've already practiced in my IoT and multi-department projects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Languages (small panel) ===== -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">08 — Languages</span>
+      <h2>Communication</h2>
+    </div>
+    <div class="tag-cloud">
+      <span class="tag-pill">Tamil — Native</span>
+      <span class="tag-pill">English — Professional Working Proficiency</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section id="contact" class="contact-section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-tag">09 — Contact</span>
+      <h2>Let's connect</h2>
+      <p class="section-sub">Open to full-time roles, internships, and immediate opportunities across Bengaluru and remote-friendly teams.</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:vel2152005@gmail.com">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></span>
+        <span class="label">Email</span>
+        <span class="value">vel2152005@gmail.com</span>
+      </a>
+      <a class="contact-card" href="tel:+917826833271">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.81.36 1.6.7 2.34a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.74-1.27a2 2 0 0 1 2.11-.45c.74.34 1.53.57 2.34.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <span class="label">Phone</span>
+        <span class="value">+91 78268 33271</span>
+      </a>
+      <a class="contact-card" href="https://wa.me/917826833271" target="_blank" rel="noopener">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+        <span class="label">WhatsApp</span>
+        <span class="value">+91 78268 33271</span>
+      </a>
+      <a class="contact-card" href="www.linkedin.com/in/velmurugan132" target="_blank" rel="noopener">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+        <span class="label">LinkedIn</span>
+        <span class="value">velmurugan</span>
+      </a>
+      <a class="contact-card" href="https://github.com/vel-git132" target="_blank" rel="noopener">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></span>
+        <span class="label">GitHub Portfolio</span>
+        <span class="value">github.com/vel-git132</span>
+      </a>
+      <a class="contact-card" href="https://www.google.com/maps/place/Bengaluru" target="_blank" rel="noopener">
+        <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <span class="label">Location</span>
+        <span class="value">Bengaluru, India — Immediate Joiner</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="status-dot"></span>VELMURUGAN S · NETWORK &amp; IT SUPPORT ENGINEER · BUILT FOR RECRUITERS, 2026
+</footer>
+
+</body>
+</html>
